@@ -6,14 +6,13 @@
 
 // import { useState } from 'react'
 
-// import Navbar from "./components/Navbar";
-import Homepage from "./containers/Homepage";
+import { BrowserRouter } from "react-router-dom";
+import Router from "./Router";
 
 export default function App() {
   return (
-    <>
-      {/* <Navbar /> */}
-      <Homepage />
-    </>
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
   );
 }
