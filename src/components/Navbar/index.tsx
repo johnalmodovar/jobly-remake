@@ -8,6 +8,8 @@
  *
  * State:
  * - toggleMenu: state that tracks when users click on hamburger menu.
+ *
+ * TODO: replace Jobly text with Link.
  */
 
 import { useState } from "react";
@@ -27,7 +29,6 @@ export default function Navbar() {
     <nav
       className="
         bg-white
-        fixed
         navbar
         opacity-90
         shadow-md
@@ -36,9 +37,7 @@ export default function Navbar() {
       "
     >
       <div className="navbar-start">
-        <a className="text-black" href="#">
-          Joblify
-        </a>
+        <p className="text-black pl-1 lg:pl-3">Jobly</p>
       </div>
       <div className="navbar-center">
         <div
@@ -82,7 +81,7 @@ export default function Navbar() {
             flex
             justify-end
             lg:hidden
-            p-5
+            pr-5
             text-3xl
           "
         >
