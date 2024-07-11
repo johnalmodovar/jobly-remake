@@ -11,8 +11,10 @@ import Router from "./Router";
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Router />
-    </BrowserRouter>
+    <div className="bg-[#141550]">
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
+    </div>
   );
 }
