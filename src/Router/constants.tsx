@@ -2,6 +2,7 @@ import { RouterType } from "./definitions";
 import Homepage from "../containers/Homepage";
 import CompanyList from "../containers/Company/CompanyList";
 import CompanyPage from "../containers/Company/CompanyPage";
+import JobList from "../containers/Job/JobList";
 
 export const routerData: RouterType[] = [
   {
@@ -18,5 +19,10 @@ export const routerData: RouterType[] = [
     path: "/companies/:handle",
     title: "company page",
     element: <CompanyPage />,
+  },
+  {
+    path: "/jobs",
+    title: "jobs",
+    element: <JobList />,
   },
 ];
