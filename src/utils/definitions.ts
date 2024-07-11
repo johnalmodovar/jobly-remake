@@ -8,7 +8,7 @@ export interface CompanyI {
   description: string;
   numEmployees: string;
   logoUrl?: string;
-  jobs?: Array<JobI>;
+  jobs: Array<JobI>;
 }
 
 export interface JobI {
