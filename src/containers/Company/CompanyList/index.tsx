@@ -5,6 +5,7 @@
  *
  * State:
  * - companies: [ { handle, name, description, numEmployees, logoUrl }, ... ]
+ * TODO: fix types for API.
  */
 
 import { useState, useEffect } from "react";
@@ -12,9 +13,10 @@ import { Link } from "react-router-dom";
 
 import Card from "../../../components/Company/Card";
 import JoblyApi from "../../../utils/api";
+import { CompanyI } from "../../../utils/definitions";
 
 export default function CompanyList() {
-  const [companies, setCompanies] = useState(null);
+  const [companies, setCompanies] = useState<Array<CompanyI> | null>(null);
 
   useEffect(() => {
     async function fetchCompanies() {
@@ -33,6 +35,7 @@ export default function CompanyList() {
         flex
         flex-col
         items-center
+        m-3
       "
     >
       {companies.length === 0 && <p>Sorry, no results were found!</p>}

@@ -9,9 +9,9 @@
 
 // import { useState, useEffect } from "react";
 
-import { JobI } from "../../../utils/definitions";
+import { JobDetailsI } from "../../../utils/definitions";
 
-export default function JobDetail({ job }: JobI) {
+export default function JobDetails({ job }: JobDetailsI) {
   // const [hasApplied, setHasApplied] = useState(false);
 
   // useEffect(() => {
