@@ -6,10 +6,14 @@
  * Props:
  * - company: { handle, name, description, numEmployees, logoUrl }
  *
- * TODO: handle data types for company.
+ * TODO:
+ * - handle data types for company.
+ * - combine with Job Card component to make Card component universal.
  */
 
-export default function Card({ company }) {
+import { CompanyCardI } from "../../utils/definitions";
+
+export default function Card({ company }: CompanyCardI) {
   return (
     <div
       className="
@@ -18,7 +22,10 @@ export default function Card({ company }) {
         shadow-md
         w-[60vw]
         py-4
-        my-4
+        mt-8
+        hover:scale-105
+        ease-in
+        duration-200
       "
     >
       <div className="card-body">
