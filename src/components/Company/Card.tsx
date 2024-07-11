@@ -7,7 +7,6 @@
  * - company: { handle, name, description, numEmployees, logoUrl }
  *
  * TODO:
- * - handle data types for company.
  * - combine with Job Card component to make Card component universal.
  */
 

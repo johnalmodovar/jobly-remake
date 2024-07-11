@@ -5,7 +5,6 @@
  *
  * State:
  * - companies: [ { handle, name, description, numEmployees, logoUrl }, ... ]
- * TODO: fix types for API.
  */
 
 import { useState, useEffect } from "react";
