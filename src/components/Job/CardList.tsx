@@ -11,12 +11,13 @@
  */
 
 import JobDetail from "../../containers/Job/JobDetail";
+import { CardListI } from "../../utils/definitions";
 
-export default function CardList({ jobs }) {
+export default function CardList({ jobs }: CardListI) {
   return (
     <>
       {jobs.map((j) => (
-        <JobDetail job={j} />
+        <JobDetail key={j.id} job={j} />
       ))}
     </>
   );

@@ -30,6 +30,10 @@ export interface CompanyCardI {
   company: CompanyI;
 }
 
+export interface CardListI {
+  jobs: Array<JobI>;
+}
+
 /** API types/interfaces. */
 
 export type endpointT = string;
