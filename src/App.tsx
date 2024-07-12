@@ -11,10 +11,10 @@ import Router from "./Router";
 
 export default function App() {
   return (
-    <div className="bg-[#141550]">
+    <main className="bg-[#141550] min-h-screen">
       <BrowserRouter>
         <Router />
       </BrowserRouter>
-    </div>
+    </main>
   );
 }
