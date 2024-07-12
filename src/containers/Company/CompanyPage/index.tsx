@@ -29,17 +29,21 @@ export default function CompanyPage() {
   return (
     <div
       className="
+        p-10
         flex
-        items-center
         justify-center
       "
     >
       <div
         className="
         bg-white
-        lg:card
+        min-h-screen
+        min-w-full
+        md:min-h-fit
+        md:min-w-fit
+        md:card
         p-10
-        lg:m-5
+        md:m-5
         "
       >
         {company.logoUrl && (
