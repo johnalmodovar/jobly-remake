@@ -31,7 +31,7 @@ export default function JobList() {
   return (
     <div
       className="
-        m-5
+        py-5
         flex
         flex-col
         items-center

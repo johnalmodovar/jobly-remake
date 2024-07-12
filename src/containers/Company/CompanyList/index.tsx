@@ -34,7 +34,7 @@ export default function CompanyList() {
         flex
         flex-col
         items-center
-        m-3
+        py-5
       "
     >
       {companies.length === 0 && <p>Sorry, no results were found!</p>}
