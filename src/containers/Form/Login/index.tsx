@@ -27,9 +27,9 @@ export default function Login() {
         </label> */}
         <input
           required
-          type="email"
-          name="email"
-          placeholder="Email"
+          type="text"
+          name="username"
+          placeholder="Username"
           // value={formData.email}
           // onChange={handleChange}
           className="
