@@ -5,7 +5,6 @@
  *
  * State:
  * - jobs: [ { id, title, salary, equity }, ... ]
- * TODO: fix types for API.
  */
 
 import { useState, useEffect } from "react";
@@ -36,14 +35,20 @@ export default function JobList() {
         flex-col
         items-center
         justify-center
-        md:grid
-        md:grid-cols-2
-        lg:grid-cols-3
-        bg-[#141550]
       "
     >
-      {jobs.length === 0 && <p>Sorry, no results were found!</p>}
-      <CardList jobs={jobs} />
+      <div
+        className="
+          gap-8
+          md:grid
+          md:grid-cols-2
+          xl:grid-cols-3
+          xl:gap-10
+        "
+      >
+        {jobs.length === 0 && <p>Sorry, no results were found!</p>}
+        <CardList jobs={jobs} />
+      </div>
     </div>
   );
 }

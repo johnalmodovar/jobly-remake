@@ -5,6 +5,9 @@
  *
  * Props:
  * - job: { id, title, salary, equity, companyHandle, companyName }
+ *
+ * TODO:
+ * - add feature to like/unlike jobs for applying.
  */
 
 // import { useState, useEffect } from "react";
@@ -51,15 +54,9 @@ export default function JobDetails({ job }: JobDetailsI) {
       bg-gray-100
         shadow-lg
         h-52
-        w-[70vw]
-        md:w-[50vw]
-        lg:w-[40vw]
-        xl:w-[30vw]
-        py-4
+        w-96
+        p-4
         mt-8
-        hover:scale-105
-        ease-in
-        duration-200
       "
     >
       <div className="card-body">
