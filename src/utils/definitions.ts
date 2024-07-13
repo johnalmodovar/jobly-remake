@@ -66,3 +66,8 @@ export interface CompanyStoreI {
   fetchCompany: (handle: handleT) => Promise<void>;
   fetchCompanies: () => Promise<void>;
 }
+
+export interface JobStoreI {
+  jobs: Array<JobI> | null;
+  fetchJobs: () => Promise<void>;
+}
