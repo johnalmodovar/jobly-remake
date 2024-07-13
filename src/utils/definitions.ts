@@ -20,6 +20,17 @@ export interface JobI {
   companyName: string;
 }
 
+export interface userI {
+  data: {
+    username: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    isAdmin: boolean;
+  } | null;
+  isLoggedIn: boolean;
+}
+
 /** Component types/interfaces. */
 
 export interface JobDetailsI {
@@ -39,10 +50,19 @@ export interface CardListI {
 export type endpointT = string;
 export type dataT = {}; //TODO: FINISH WHEN WE FIND OUT WHAT IS INSIDE DATA.
 export type methodT = "GET" | "POST" | "DELETE";
-export type handleT = string | undefined;
 export type searchTermT = string;
 export type jobIdT = number;
 
 export interface getCompanyI {
   res: string;
+}
+
+/** State store types/interfaces. */
+export type handleT = string | undefined;
+
+export interface CompanyStoreI {
+  company: CompanyI | null;
+  companies: Array<CompanyI> | null;
+  fetchCompany: (handle: handleT) => Promise<void>;
+  fetchCompanies: () => Promise<void>;
 }
