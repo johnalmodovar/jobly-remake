@@ -3,7 +3,7 @@
 import { create } from "zustand";
 // import { jwtDecode } from "jwt-decode";
 
-import { CompanyStoreI, JobStoreI } from "../utils/definitions";
+import { CompanyStoreI, JobStoreI } from "../types/definitions";
 
 //TODO: after deploying backend, put URL here.
 const BASE_URL = "http://localhost:3001";

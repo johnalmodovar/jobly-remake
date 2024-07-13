@@ -1,4 +1,9 @@
-/** Definitions and data types used throughout application. */
+/** Definitions.
+ *
+ * @description
+ * data types and interfaces used throughout the application.
+ *
+ */
 
 /** Company and Job types/interfaces. */
 

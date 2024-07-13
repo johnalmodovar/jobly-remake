@@ -10,7 +10,7 @@
  * - combine with Job Card component to make Card component universal.
  */
 
-import { CompanyCardI } from "../../utils/definitions";
+import { CompanyCardI } from "../../types/definitions";
 
 export default function Card({ company }: CompanyCardI) {
   return (

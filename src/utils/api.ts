@@ -14,7 +14,7 @@ import {
   handleT,
   searchTermT,
   jobIdT,
-} from "./definitions";
+} from "../types/definitions";
 
 const BASE_URL = "http://localhost:3001";
 // "https://backend-jobly.onrender.com" ||

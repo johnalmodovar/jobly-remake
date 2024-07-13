@@ -12,7 +12,7 @@
 
 import { useState } from "react";
 
-import { JobDetailsI } from "../../../utils/definitions";
+import { JobDetailsI } from "../../../types/definitions";
 
 export default function JobDetails({ job }: JobDetailsI) {
   const [isInterested, setIsInterested] = useState(false);
