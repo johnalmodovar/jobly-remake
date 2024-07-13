@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import CardList from "../../../components/Job/CardList";
-import { useCompanyStore } from "../../../states";
+import { useCompanyStore } from "../../../states/stores";
 
 export default function CompanyPage() {
   const { handle } = useParams();

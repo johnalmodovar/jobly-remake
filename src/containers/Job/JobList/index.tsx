@@ -10,7 +10,7 @@
 import { useEffect } from "react";
 
 import CardList from "../../../components/Job/CardList";
-import { useJobStore } from "../../../states";
+import { useJobStore } from "../../../states/stores";
 
 export default function JobList() {
   const { jobs, fetchJobs } = useJobStore();
