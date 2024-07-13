@@ -4,23 +4,18 @@
  * Shows page of the specific company with its listed job openings.
  */
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import JoblyApi from "../../../utils/api";
 import CardList from "../../../components/Job/CardList";
-import { CompanyI } from "../../../utils/definitions";
+import { useCompanyStore } from "../../../states";
 
 export default function CompanyPage() {
   const { handle } = useParams();
-  const [company, setCompany] = useState<CompanyI | null>(null);
+  const { company, fetchCompany } = useCompanyStore();
 
   useEffect(() => {
-    async function fetchCompany() {
-      const data = await JoblyApi.getCompany(handle);
-      setCompany(data);
-    }
-    fetchCompany();
+    fetchCompany(handle);
   }, [handle]);
 
   //TODO: make better loading screen.

@@ -7,21 +7,16 @@
  * - companies: [ { handle, name, description, numEmployees, logoUrl }, ... ]
  */
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import Card from "../../../components/Company/Card";
-import JoblyApi from "../../../utils/api";
-import { CompanyI } from "../../../utils/definitions";
+import { useCompanyStore } from "../../../states";
 
 export default function CompanyList() {
-  const [companies, setCompanies] = useState<Array<CompanyI> | null>(null);
+  const { companies, fetchCompanies } = useCompanyStore();
 
   useEffect(() => {
-    async function fetchCompanies() {
-      const data = await JoblyApi.getCompanies();
-      setCompanies(data);
-    }
     fetchCompanies();
   }, []);
 
