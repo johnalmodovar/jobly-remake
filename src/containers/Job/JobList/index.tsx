@@ -9,18 +9,13 @@
 
 import { useState, useEffect } from "react";
 
-import JoblyApi from "../../../utils/api";
 import CardList from "../../../components/Job/CardList";
-import { JobI } from "../../../utils/definitions";
+import { useJobStore } from "../../../states";
 
 export default function JobList() {
-  const [jobs, setJobs] = useState<Array<JobI> | null>(null);
+  const { jobs, fetchJobs } = useJobStore();
 
   useEffect(() => {
-    async function fetchJobs() {
-      const data = await JoblyApi.getJobs("");
-      setJobs(data);
-    }
     fetchJobs();
   }, []);
 
