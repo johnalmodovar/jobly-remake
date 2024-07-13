@@ -7,7 +7,7 @@
  * - jobs: [ { id, title, salary, equity }, ... ]
  */
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 import CardList from "../../../components/Job/CardList";
 import { useJobStore } from "../../../states";
