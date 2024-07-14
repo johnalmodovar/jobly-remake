@@ -5,7 +5,7 @@
  *
  */
 
-/** Company and Job types/interfaces. */
+/** Data types/interfaces. */
 
 export interface CompanyI {
   handle: string;
@@ -25,7 +25,7 @@ export interface JobI {
   companyName: string;
 }
 
-export interface userI {
+export interface UserI {
   data: {
     username: string;
     firstName: string;
@@ -34,6 +34,16 @@ export interface userI {
     isAdmin: boolean;
   } | null;
   isLoggedIn: boolean;
+}
+
+export interface TokenI {
+  username: string;
+  isAdmin: boolean;
+}
+
+export interface UserLoginI {
+  username: string;
+  password: string;
 }
 
 /** Component types/interfaces. */
@@ -50,19 +60,8 @@ export interface CardListI {
   jobs: Array<JobI>;
 }
 
-/** API types/interfaces. */
+/** Store types/interfaces. */
 
-export type endpointT = string;
-export type dataT = {}; //TODO: FINISH WHEN WE FIND OUT WHAT IS INSIDE DATA.
-export type methodT = "GET" | "POST" | "DELETE";
-export type searchTermT = string;
-export type jobIdT = number;
-
-export interface getCompanyI {
-  res: string;
-}
-
-/** State store types/interfaces. */
 export type handleT = string | undefined;
 
 export interface CompanyStoreI {
@@ -75,4 +74,12 @@ export interface CompanyStoreI {
 export interface JobStoreI {
   jobs: Array<JobI> | null;
   fetchJobs: () => Promise<void>;
+}
+
+export interface AuthStoreI {
+  user: UserI;
+  token: string | null;
+  setUser: void;
+  fetchUser: () => Promise<void>;
+  login: ({ username, password }: UserLoginI) => Promise<void>;
 }
