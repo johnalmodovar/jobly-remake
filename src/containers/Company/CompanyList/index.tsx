@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import Card from "../../../components/Company/Card";
-import { useCompanyStore } from "../../../states";
+import { useCompanyStore } from "../../../states/stores";
 
 export default function CompanyList() {
   const { companies, fetchCompanies } = useCompanyStore();
