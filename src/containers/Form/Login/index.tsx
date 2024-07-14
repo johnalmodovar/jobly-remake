@@ -4,34 +4,52 @@
  * Form to log in users.
  */
 
-// import { useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { useAuthStore } from "../../../states/stores";
 
 export default function Login() {
-  // const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState({ username: "", password: "" });
   // const [formErrors, setFormErrors] = useState([]);
 
-  // function handleChange(evt) {
-  //   const { name, value } = evt.target;
+  const navigate = useNavigate();
+  const { login } = useAuthStore();
 
-  //   setFormData((fData) => ({
-  //     ...fData,
-  //     [name]: value,
-  //   }));
-  // }
+  const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = evt.target;
+
+    setFormData((data) => ({
+      ...data,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    // setFormErrors([]);
+
+    try {
+      await login(formData);
+      navigate("/companies");
+    } catch (error) {
+      console.log("error instance: ", error);
+    }
+  };
 
   return (
-    <form className="card-body">
+    <form className="card-body" onSubmit={handleSubmit}>
       <div className="form-control">
         {/* <label className="label">
-          <span className="label-text">Email</span>
+          <span className="label-text">Username</span>
         </label> */}
         <input
           required
           type="text"
           name="username"
           placeholder="Username"
-          // value={formData.email}
-          // onChange={handleChange}
+          value={formData.username}
+          onChange={handleChange}
           className="
             input
             input-bordered
@@ -48,8 +66,8 @@ export default function Login() {
           type="password"
           name="password"
           placeholder="Password"
-          // value={formData.password}
-          // onChange={handleChange}
+          value={formData.password}
+          onChange={handleChange}
           className="
             input
             input-bordered
