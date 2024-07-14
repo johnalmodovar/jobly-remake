@@ -1,9 +1,15 @@
 /** Global state management. */
 
 import { create } from "zustand";
-// import { jwtDecode } from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
-import { CompanyStoreI, JobStoreI } from "../types/definitions";
+import {
+  CompanyStoreI,
+  JobStoreI,
+  AuthStoreI,
+  TokenI,
+  UserLoginI,
+} from "../types";
 
 //TODO: after deploying backend, put URL here.
 const BASE_URL = "http://localhost:3001";
@@ -32,10 +38,43 @@ export const useJobStore = create<JobStoreI>((set) => ({
   },
 }));
 
-// export const useUserStore = create<UserStoreI>()((set) => ({
-//   user: {
-//     data: null,
-//     isLoggedIn: false,
-//   },
-//   setUser: (user: userI) => set({ user: user }),
-// }));
+export const useAuthStore = create<AuthStoreI>((set, get) => ({
+  user: {
+    data: null,
+    isLoggedIn: false,
+  },
+  token: localStorage.getItem("token"),
+  setUser: set((u) => ({ ...u, isLoggedIn: true })),
+  fetchUser: async () => {
+    const token = get().token;
+    if (token) {
+      const { username } = jwtDecode<TokenI>(token);
+
+      try {
+        const res = await fetch(`${BASE_URL}/users/${username}`);
+        const userData = await res.json();
+        set({ user: { data: userData.data, isLoggedIn: true } });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  },
+  login: async ({ username, password }: UserLoginI) => {
+    const body = {
+      username: username,
+      password: password,
+    };
+    const metaData = {
+      method: "POST",
+      authorization: `Bearer ${get().token}`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    };
+
+    const res = await fetch(`${BASE_URL}/auth/login`, metaData);
+    const data = await res.json();
+    set({ token: data.token });
+  },
+}));
