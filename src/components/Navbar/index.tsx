@@ -31,10 +31,14 @@ export default function Navbar() {
     <nav
       className="
         navbar
+        drawer
+        drawer-end
         bg-white
         shadow-md
         text-primary-content
         rounded-box
+        w-full
+        z-10
       "
     >
       <div className="navbar-start">
@@ -93,6 +97,82 @@ export default function Navbar() {
             </details>
           </li>
         </ul>
+        {/* mobile sidebar. */}
+        <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+        <div className="drawer-content">
+          <label
+            htmlFor="my-drawer-4"
+            className="
+              drawer-button
+              btn
+              btn-ghost
+              text-xl
+              lg:hidden
+            "
+          >
+            <AiOutlineMenu />
+          </label>
+        </div>
+        <div className="drawer-side">
+          <label
+            htmlFor="my-drawer-4"
+            aria-label="close sidebar"
+            className="drawer-overlay"
+          ></label>
+          <ul
+            className="
+              menu
+              bg-white
+              text-black
+              min-h-full
+              w-80
+              p-4
+              rounded-l-box
+            "
+          >
+            {/* Sidebar content here */}
+            {links.map(({ label, href }) => (
+              <li>
+                <NavLink
+                  aria-label={`Go to ${label} page`}
+                  className="
+                  group
+                  text-black
+                  mr-2
+                "
+                  key={`${label}`}
+                  to={href}
+                >
+                  {label}
+                </NavLink>
+              </li>
+            ))}
+            <li>
+              <details>
+                <summary>Profile</summary>
+                <ul className="bg-white rounded-t-none">
+                  {dropdownLinks.map(({ label, href }) => (
+                    <li>
+                      <Link
+                        aria-label={`Go to ${label} page`}
+                        className="text-black"
+                        key={`${label}`}
+                        to={href}
+                      >
+                        {label}
+                      </Link>
+                    </li>
+                  ))}
+                  <li>
+                    <Link to="/" onClick={logout}>
+                      Logout
+                    </Link>
+                  </li>
+                </ul>
+              </details>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   );
