@@ -26,8 +26,8 @@ export default function App() {
 
   return (
     <main className="bg-[#141550] min-h-screen">
-      {user.isLoggedIn && <Navbar />}
       <BrowserRouter>
+        {user.isLoggedIn && <Navbar />}
         <Router />
       </BrowserRouter>
     </main>
