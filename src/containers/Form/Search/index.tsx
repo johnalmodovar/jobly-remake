@@ -15,6 +15,7 @@ export default function SearchForm() {
 
   const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
+    setFormData("");
   };
 
   return (
@@ -26,8 +27,8 @@ export default function SearchForm() {
           bg-gray-100
           input
           input-bordered
-          w-24
-          md:w-auto
+          w-56
+          lg:w-72
           h-9
         "
         value={formData}
