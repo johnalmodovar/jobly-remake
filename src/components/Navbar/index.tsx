@@ -11,7 +11,6 @@
  *
  */
 
-import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
@@ -20,12 +19,7 @@ import { links, dropdownLinks } from "./constants";
 import { useAuthStore } from "../../states/stores";
 
 export default function Navbar() {
-  const [toggleMenu, setToggleMenu] = useState(false);
   const { logout } = useAuthStore();
-
-  const handleClick = () => {
-    setToggleMenu(!toggleMenu);
-  };
 
   return (
     <nav
