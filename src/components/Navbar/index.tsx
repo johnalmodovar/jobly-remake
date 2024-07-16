@@ -6,20 +6,22 @@
  * Props:
  * - logout: function that logs users out. (App)
  *
- * State:
+ * Local State:
  * - toggleMenu: state that tracks when users click on hamburger menu.
  *
- * TODO: replace Jobly text with Link.
  */
 
 import { useState } from "react";
+import { NavLink, Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
 import { links } from "./constants";
+import { useAuthStore } from "../../states/stores";
 
 export default function Navbar() {
   const [toggleMenu, setToggleMenu] = useState(false);
+  const { logout } = useAuthStore();
 
   const handleClick = () => {
     setToggleMenu(!toggleMenu);
@@ -28,116 +30,50 @@ export default function Navbar() {
   return (
     <nav
       className="
-        bg-white
         navbar
-        opacity-90
+        bg-white
         shadow-md
-        top-0
-        z-10
+        text-primary-content
+        rounded-md
       "
     >
-      <div className="navbar-start">
-        <p className="text-black pl-1 lg:pl-3">Jobly</p>
+      <div className="flex-1">
+        <p className="text-xl pl-2">Jobly</p>
       </div>
-      <div className="navbar-center">
-        <div
-          className="
-            gap-8
-            hidden
-            items-center
-            lg:flex
-          "
-        >
+      <div className="flex-none">
+        <ul className="menu menu-horizontal px-1">
           {links.map(({ label, href }) => (
-            <a
-              aria-label={`Go to ${label} section`}
-              className="
-                group
-                inline-block
-                text-black
-                text-lg
-              "
-              key={`${label}-${uuidv4()}`}
-              href={href}
-            >
-              {label}
-              <div
+            <li>
+              <NavLink
+                aria-label={`Go to ${label} page`}
                 className="
-                  bg-gray-700
-                  duration-500
-                  group-hover:w-full
-                  h-[2px]
-                  transition-all
-                  w-0
+                  group
+                  text-black
+                  mr-2
                 "
-              />
-            </a>
+                key={`${label}`}
+                to={href}
+              >
+                {label}
+              </NavLink>
+            </li>
           ))}
-        </div>
-      </div>
-      <div className="navbar-end">
-        <div
-          className="
-            flex
-            justify-end
-            lg:hidden
-            pr-5
-            text-3xl
-          "
-        >
-          {toggleMenu ? (
-            <button
-              arial-label="close navigation bar menu"
-              className="hover:text-gray-700 text-black"
-              onClick={handleClick}
-            >
-              <AiOutlineClose />
-            </button>
-          ) : (
-            <button
-              arial-label="open navigation bar menu"
-              className="hover:text-gray-700 text-black"
-              onClick={handleClick}
-            >
-              <AiOutlineMenu />
-            </button>
-          )}
-        </div>
-        <div
-          className={`
-            bg-white
-            bottom-0
-            duration-500
-            fixed
-            lg:hidden
-            overflow-y-auto
-            pl-4
-            py-24
-            ${toggleMenu ? "left-0" : "left-[-100%]"}
-            top-20
-            w-full
-          `}
-        >
-          {links.map(({ label, href }) => (
-            <a
-              aria-label={`Go to ${label} section`}
-              className="
-                block
-                hover:bg-gray-700
-                hover:rounded-xl
-                hover:text-white
-                hover:w-[98%]
-                px-3
-                py-7
-                text-black
-              "
-              href={href}
-              onClick={handleClick}
-            >
-              {label}
-            </a>
-          ))}
-        </div>
+          <li>
+            <details>
+              <summary>Profile</summary>
+              <ul className="bg-white rounded-t-none">
+                <li>
+                  <a>Likes</a>
+                </li>
+                <li>
+                  <Link to="/" onClick={logout}>
+                    Logout
+                  </Link>
+                </li>
+              </ul>
+            </details>
+          </li>
+        </ul>
       </div>
     </nav>
   );
