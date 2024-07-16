@@ -9,7 +9,7 @@ export const links = [
   },
 ];
 
-export const dropDownLinks = [
+export const dropdownLinks = [
   {
     href: "/likes",
     label: "Likes",

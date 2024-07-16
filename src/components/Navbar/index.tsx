@@ -13,10 +13,10 @@
 
 import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
-import { links } from "./constants";
+import SearchForm from "../../containers/Form/Search";
+import { links, dropdownLinks } from "./constants";
 import { useAuthStore } from "../../states/stores";
 
 export default function Navbar() {
@@ -34,14 +34,24 @@ export default function Navbar() {
         bg-white
         shadow-md
         text-primary-content
-        rounded-md
+        rounded-box
       "
     >
-      <div className="flex-1">
+      <div className="navbar-start">
         <p className="text-xl pl-2">Jobly</p>
       </div>
-      <div className="flex-none">
-        <ul className="menu menu-horizontal px-1">
+      <div className="navbar-center">
+        <SearchForm />
+      </div>
+      <div className="navbar-end">
+        <ul
+          className="
+            lg:menu
+            lg:menu-horizontal
+            lg:px-2
+            hidden
+          "
+        >
           {links.map(({ label, href }) => (
             <li>
               <NavLink
@@ -62,9 +72,18 @@ export default function Navbar() {
             <details>
               <summary>Profile</summary>
               <ul className="bg-white rounded-t-none">
-                <li>
-                  <a>Likes</a>
-                </li>
+                {dropdownLinks.map(({ label, href }) => (
+                  <li>
+                    <Link
+                      aria-label={`Go to ${label} page`}
+                      className="text-black"
+                      key={`${label}`}
+                      to={href}
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                ))}
                 <li>
                   <Link to="/" onClick={logout}>
                     Logout
