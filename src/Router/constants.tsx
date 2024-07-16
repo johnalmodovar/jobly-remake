@@ -1,10 +1,10 @@
-import { RouterType } from "./definitions";
+import { RouterI } from "../types";
 import Homepage from "../containers/Homepage";
 import CompanyList from "../containers/Company/CompanyList";
 import CompanyPage from "../containers/Company/CompanyPage";
 import JobList from "../containers/Job/JobList";
 
-export const routerData: RouterType[] = [
+export const routerData: RouterI[] = [
   {
     path: "",
     title: "home",

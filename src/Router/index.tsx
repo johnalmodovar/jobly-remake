@@ -6,13 +6,25 @@
 
 import { Route, Routes } from "react-router-dom";
 
-import { RouterType } from "./definitions";
+import Homepage from "../containers/Homepage";
 import { routerData } from "./constants";
+import { useAuthStore } from "../states/stores";
 
 export default function Router() {
-  const routes = routerData.map(({ path, title, element }: RouterType) => {
-    return <Route key={title} path={`/${path}`} element={element} />;
-  });
+  const { user } = useAuthStore();
 
-  return <Routes>{routes}</Routes>;
+  return (
+    <Routes>
+      <Route path="*" element={<p>Not Found Placeholder.</p>} />
+      {user.isLoggedIn ? (
+        <>
+          {routerData.map(({ path, title, element }) => (
+            <Route key={title} path={`/${path}`} element={element} />
+          ))}
+        </>
+      ) : (
+        <Route path="/" element={<Homepage />} />
+      )}
+    </Routes>
+  );
 }

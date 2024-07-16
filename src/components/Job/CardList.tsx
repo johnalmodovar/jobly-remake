@@ -11,8 +11,7 @@
  */
 
 import JobDetail from "../../containers/Job/JobDetail";
-import { CardListI } from "../../types/definitions";
-
+import { CardListI } from "../../types";
 export default function CardList({ jobs }: CardListI) {
   return (
     <>

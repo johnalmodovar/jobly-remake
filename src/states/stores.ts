@@ -54,7 +54,8 @@ export const useAuthStore = create<AuthStoreI>((set, get) => ({
       try {
         const res = await fetch(`${BASE_URL}/users/${username}`);
         const userData = await res.json();
-        set({ user: { data: userData.data, isLoggedIn: true } });
+        set({ user: { data: userData, isLoggedIn: true } });
+        console.log("user, ", get().user);
       } catch (error) {
         console.error(error);
       }

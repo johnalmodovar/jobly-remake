@@ -46,6 +46,12 @@ export interface UserLoginI {
   password: string;
 }
 
+export interface RouterI {
+  title: string;
+  path: string;
+  element: JSX.Element;
+}
+
 /** Component types/interfaces. */
 
 export interface JobDetailsI {
@@ -62,12 +68,10 @@ export interface CardListI {
 
 /** Store types/interfaces. */
 
-export type handleT = string | undefined;
-
 export interface CompanyStoreI {
   company: CompanyI | null;
   companies: Array<CompanyI> | null;
-  fetchCompany: (handle: handleT) => Promise<void>;
+  fetchCompany: (handle: string | undefined) => Promise<void>;
   fetchCompanies: () => Promise<void>;
 }
 
