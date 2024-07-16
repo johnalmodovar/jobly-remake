@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useAuthStore } from "../../../states/stores";
 
-export default function Login() {
+export default function LoginForm() {
   const [formData, setFormData] = useState({ username: "", password: "" });
   // const [formErrors, setFormErrors] = useState([]);
 

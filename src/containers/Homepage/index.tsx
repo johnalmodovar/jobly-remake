@@ -4,66 +4,77 @@
  * Landing page for application.
  */
 
+import { Navigate } from "react-router-dom";
+
+import { useAuthStore } from "../../states/stores";
 import hero from "../../assets/hero.jpg";
-import Login from "../Form/Login";
+import LoginForm from "../Form/Login";
 
 export default function Homepage() {
+  const { user } = useAuthStore();
+
   return (
-    <div
-      className="
-      hero
-      min-h-screen
-      "
-      style={{
-        backgroundImage: `url(${hero})`,
-      }}
-    >
-      <div
-        className="
-          hero-content
-          flex-col
-          md:flex-row
-        "
-      >
+    <>
+      {user.isLoggedIn ? (
+        <Navigate to="/companies" replace={true} />
+      ) : (
         <div
           className="
-            text-center
-            mx-10
-            md:text-left
+            hero
+            min-h-screen
           "
+          style={{
+            backgroundImage: `url(${hero})`,
+          }}
         >
-          <h1
+          <div
             className="
-              text-5xl
-              font-bold
-              text-white
+              hero-content
+              flex-col
+              md:flex-row
             "
           >
-            Jobly
-          </h1>
-          <p
-            className="
-              py-6
-              text-2xl
-              text-white
-            "
-          >
-            Find the perfect job that suits your skills!
-          </p>
+            <div
+              className="
+                text-center
+                mx-10
+                md:text-left
+              "
+            >
+              <h1
+                className="
+                  text-5xl
+                  font-bold
+                  text-white
+                "
+              >
+                Jobly
+              </h1>
+              <p
+                className="
+                  py-6
+                  text-2xl
+                  text-white
+                "
+              >
+                Find the perfect job that suits your skills!
+              </p>
+            </div>
+            <div
+              className="
+                card
+                bg-base-100
+                w-full
+                max-w-sm
+                shrink-0
+                shadow-2xl
+              "
+            >
+              <LoginForm />
+            </div>
+          </div>
         </div>
-        <div
-          className="
-            card
-            bg-base-100
-            w-full
-            max-w-sm
-            shrink-0
-            shadow-2xl
-          "
-        >
-          <Login />
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
