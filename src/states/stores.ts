@@ -44,9 +44,10 @@ export const useAuthStore = create<AuthStoreI>((set, get) => ({
     isLoggedIn: false,
   },
   token: localStorage.getItem("token"),
-  setUser: set((u) => ({ ...u, isLoggedIn: true })),
+  setUser: (userData) => set({ user: { ...userData, isLoggedIn: true } }),
   fetchUser: async () => {
     const token = get().token;
+
     if (token) {
       const { username } = jwtDecode<TokenI>(token);
 
@@ -66,7 +67,6 @@ export const useAuthStore = create<AuthStoreI>((set, get) => ({
     };
     const metaData = {
       method: "POST",
-      authorization: `Bearer ${get().token}`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -76,5 +76,9 @@ export const useAuthStore = create<AuthStoreI>((set, get) => ({
     const res = await fetch(`${BASE_URL}/auth/login`, metaData);
     const data = await res.json();
     set({ token: data.token });
+  },
+  logout: () => {
+    set({ user: { data: null, isLoggedIn: false } });
+    set({ token: null });
   },
 }));

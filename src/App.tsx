@@ -4,12 +4,25 @@
  * Main component for entire application. Holds all funcitonality.
  */
 
-// import { useState } from 'react'
-
+import { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
+
 import Router from "./Router";
+import { useAuthStore } from "./states/stores";
 
 export default function App() {
+  const { token, setUser, fetchUser } = useAuthStore();
+
+  useEffect(() => {
+    token ? fetchUser() : setUser;
+  }, [token]);
+
+  useEffect(() => {
+    token
+      ? localStorage.setItem("token", token)
+      : localStorage.removeItem("token");
+  }, [token]);
+
   return (
     <main className="bg-[#141550] min-h-screen">
       <BrowserRouter>

@@ -79,7 +79,8 @@ export interface JobStoreI {
 export interface AuthStoreI {
   user: UserI;
   token: string | null;
-  setUser: void;
+  setUser: (userData: UserI) => void;
   fetchUser: () => Promise<void>;
   login: ({ username, password }: UserLoginI) => Promise<void>;
+  logout: () => void;
 }
