@@ -32,11 +32,9 @@ export default function CompanyPage() {
       <div
         className="
         bg-white
-        min-h-screen
-        min-w-full
-        md:min-h-fit
-        md:min-w-fit
-        md:card
+        min-h-fit
+        min-w-fit
+        card
         p-10
         md:m-5
         "
@@ -78,16 +76,22 @@ export default function CompanyPage() {
         </p>
         <div
           className="
-          flex
-          flex-col
-          items-center
-          justify-center
-          lg:grid
-          lg:grid-cols-2
-          lg:gap-5
+          py-5
+            flex
+            flex-col
+            items-center
+            justify-center
           "
         >
-          <CardList jobs={company.jobs} />
+          <div
+            className="
+              lg:grid
+              lg:grid-cols-2
+              lg:gap-8
+            "
+          >
+            <CardList jobs={company.jobs} />
+          </div>
         </div>
       </div>
     </div>
