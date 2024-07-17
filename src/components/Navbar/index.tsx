@@ -13,7 +13,7 @@
 
 import { useRef } from "react";
 import { NavLink, Link } from "react-router-dom";
-import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import { AiOutlineMenu } from "react-icons/ai";
 
 import SearchForm from "../../containers/Form/Search";
 import { links, dropdownLinks } from "./constants";
@@ -23,7 +23,7 @@ export default function Navbar() {
   const { logout } = useAuthStore();
   const drawerRef = useRef<HTMLInputElement>(null);
 
-  const handleClick = () => {
+  const handleDrawerClick = () => {
     if (typeof drawerRef.current === "undefined") return;
     drawerRef.current?.click();
   };
@@ -74,9 +74,29 @@ export default function Navbar() {
             </li>
           ))}
           <li>
-            <details>
-              <summary>Profile</summary>
-              <ul className="bg-white rounded-t-none">
+            <div
+              className="
+                dropdown
+                dropdown-bottom
+                dropdown-end
+              "
+            >
+              <div tabIndex={0} role="button">
+                Profile
+              </div>
+              <ul
+                tabIndex={0}
+                className="
+                  dropdown-content
+                  menu
+                  bg-white
+                  rounded-box
+                  z-[1]
+                  w-52
+                  p-2
+                  shadow-md
+                "
+              >
                 {dropdownLinks.map(({ label, href }) => (
                   <li>
                     <Link
@@ -95,7 +115,7 @@ export default function Navbar() {
                   </Link>
                 </li>
               </ul>
-            </details>
+            </div>
           </li>
         </ul>
         {/* mobile sidebar. */}
@@ -148,7 +168,7 @@ export default function Navbar() {
                 "
                   key={`${label}`}
                   to={href}
-                  onClick={handleClick}
+                  onClick={handleDrawerClick}
                 >
                   {label}
                 </NavLink>
@@ -165,7 +185,7 @@ export default function Navbar() {
                         className="text-black"
                         key={`${label}`}
                         to={href}
-                        onClick={handleClick}
+                        onClick={handleDrawerClick}
                       >
                         {label}
                       </Link>
