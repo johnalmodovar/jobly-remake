@@ -11,6 +11,7 @@
  *
  */
 
+import { useRef } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 
@@ -20,6 +21,12 @@ import { useAuthStore } from "../../states/stores";
 
 export default function Navbar() {
   const { logout } = useAuthStore();
+  const drawerRef = useRef<HTMLInputElement>(null);
+
+  const handleClick = () => {
+    if (typeof drawerRef.current === "undefined") return;
+    drawerRef.current?.click();
+  };
 
   return (
     <nav
@@ -92,7 +99,12 @@ export default function Navbar() {
           </li>
         </ul>
         {/* mobile sidebar. */}
-        <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+        <input
+          id="my-drawer-4"
+          type="checkbox"
+          className="drawer-toggle"
+          ref={drawerRef}
+        />
         <div className="drawer-content">
           <label
             htmlFor="my-drawer-4"
@@ -112,7 +124,7 @@ export default function Navbar() {
             htmlFor="my-drawer-4"
             aria-label="close sidebar"
             className="drawer-overlay"
-          ></label>
+          />
           <ul
             className="
               menu
@@ -136,6 +148,7 @@ export default function Navbar() {
                 "
                   key={`${label}`}
                   to={href}
+                  onClick={handleClick}
                 >
                   {label}
                 </NavLink>
@@ -152,6 +165,7 @@ export default function Navbar() {
                         className="text-black"
                         key={`${label}`}
                         to={href}
+                        onClick={handleClick}
                       >
                         {label}
                       </Link>
