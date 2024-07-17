@@ -17,10 +17,10 @@ import { AiOutlineMenu } from "react-icons/ai";
 
 import SearchForm from "../../containers/Form/Search";
 import { links, dropdownLinks } from "./constants";
-import { useAuthStore } from "../../states/stores";
+import { useUserStore } from "../../states/stores";
 
 export default function Navbar() {
-  const { logout } = useAuthStore();
+  const { logout } = useUserStore();
   const drawerRef = useRef<HTMLInputElement>(null);
 
   const handleDrawerClick = () => {

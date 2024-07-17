@@ -12,50 +12,22 @@
 
 import { useState } from "react";
 
-import { JobDetailsI } from "../../../types/definitions";
+import { JobDetailsI } from "../../../types";
+import { useUserStore, useJobStore } from "../../../states/stores";
 
 export default function JobDetails({ job }: JobDetailsI) {
-  const [isInterested, setIsInterested] = useState(false);
-
-  // useEffect(() => {
-  //   if (hasAppliedToJob(job.id)) {
-  //     setHasApplied(true);
-  //   }
-  // }, [job.id, hasAppliedToJob]);
+  const { user } = useUserStore();
+  const [isLiked, setIsLiked] = useState(false);
 
   const handleClick = () => {
-    setIsInterested(!isInterested);
+    setIsLiked(!isLiked);
   };
-
-  // /** handles onClick for liking jobs. */
-  // async function handleApply(evt) {
-  //   const jobId = +evt.target.value;
-
-  //   try {
-  //     await apply(currentUser.data.username, jobId);
-  //     setHasApplied(true);
-  //   } catch (error) {
-  //     console.error("Error applying to job", error);
-  //   }
-  // }
-
-  // /** handles onClick for unliking jobs. */
-  // async function handleUnapply(evt) {
-  //   const jobId = +evt.target.value;
-
-  //   try {
-  //     await unapply(currentUser.data.username, jobId);
-  //     setHasApplied(false);
-  //   } catch (error) {
-  //     console.error("Error unapplying to job", error);
-  //   }
-  // }
 
   return (
     <div
       className="
+        bg-gray-100
         card
-      bg-gray-100
         shadow-lg
         h-52
         w-96
@@ -77,7 +49,7 @@ export default function JobDetails({ job }: JobDetailsI) {
             btn
             btn-sm
             btn-circle
-            ${isInterested ? "btn-success" : "btn-error"}
+            ${isLiked ? "btn-success" : "btn-error"}
             absolute
             bottom-4
             right-4
@@ -85,7 +57,7 @@ export default function JobDetails({ job }: JobDetailsI) {
           onClick={handleClick}
           value={job.id}
           aria-label={`${
-            isInterested ? "press to unlike job" : "press to like job"
+            isLiked ? "press to unlike job" : "press to like job"
           }`}
         >
           <svg

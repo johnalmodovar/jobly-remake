@@ -26,13 +26,12 @@ export interface JobI {
 }
 
 export interface UserI {
-  data: {
-    username: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    isAdmin: boolean;
-  } | null;
+  username: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  isAdmin: boolean;
+  likes: Array<JobI>;
   isLoggedIn: boolean;
 }
 
@@ -44,6 +43,13 @@ export interface TokenI {
 export interface UserLoginI {
   username: string;
   password: string;
+}
+
+export interface EditProfileI {
+  firstName: string;
+  lastName: string;
+  email: string;
+  username: string;
 }
 
 export interface RouterI {
@@ -70,7 +76,7 @@ export interface CardListI {
 
 export interface CompanyStoreI {
   company: CompanyI | null;
-  companies: Array<CompanyI> | null;
+  companies: Array<CompanyI> | [];
   fetchCompany: (handle: string | undefined) => Promise<void>;
   fetchCompanies: () => Promise<void>;
 }
@@ -80,11 +86,18 @@ export interface JobStoreI {
   fetchJobs: () => Promise<void>;
 }
 
-export interface AuthStoreI {
+export interface UserStoreI {
   user: UserI;
   token: string | null;
   setUser: (userData: UserI) => void;
   fetchUser: () => Promise<void>;
   login: ({ username, password }: UserLoginI) => Promise<void>;
   logout: () => void;
+  editProfile: ({
+    firstName,
+    lastName,
+    email,
+    username,
+  }: EditProfileI) => Promise<void>;
+  likeJob: () => void;
 }

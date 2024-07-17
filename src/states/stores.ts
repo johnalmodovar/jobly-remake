@@ -6,9 +6,10 @@ import { jwtDecode } from "jwt-decode";
 import {
   CompanyStoreI,
   JobStoreI,
-  AuthStoreI,
+  UserStoreI,
   TokenI,
   UserLoginI,
+  EditProfileI,
 } from "../types";
 
 //TODO: after deploying backend, put URL here.
@@ -16,7 +17,7 @@ const BASE_URL = "http://localhost:3001";
 
 export const useCompanyStore = create<CompanyStoreI>((set) => ({
   company: null,
-  companies: null,
+  companies: [],
   fetchCompany: async (handle) => {
     const res = await fetch(`${BASE_URL}/companies/${handle}`);
     const data = await res.json();
@@ -38,9 +39,14 @@ export const useJobStore = create<JobStoreI>((set) => ({
   },
 }));
 
-export const useAuthStore = create<AuthStoreI>((set, get) => ({
+export const useUserStore = create<UserStoreI>((set, get) => ({
   user: {
-    data: null,
+    username: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    isAdmin: false,
+    likes: [],
     isLoggedIn: false,
   },
   token: localStorage.getItem("token"),
@@ -54,8 +60,7 @@ export const useAuthStore = create<AuthStoreI>((set, get) => ({
       try {
         const res = await fetch(`${BASE_URL}/users/${username}`);
         const userData = await res.json();
-        set({ user: { data: userData, isLoggedIn: true } });
-        console.log("user, ", get().user);
+        set({ user: { ...userData.user, isLoggedIn: true } });
       } catch (error) {
         console.error(error);
       }
@@ -63,8 +68,8 @@ export const useAuthStore = create<AuthStoreI>((set, get) => ({
   },
   login: async ({ username, password }: UserLoginI) => {
     const body = {
-      username: username,
-      password: password,
+      username,
+      password,
     };
     const metaData = {
       method: "POST",
@@ -79,7 +84,41 @@ export const useAuthStore = create<AuthStoreI>((set, get) => ({
     set({ token: data.token });
   },
   logout: () => {
-    set({ user: { data: null, isLoggedIn: false } });
+    set({
+      user: {
+        username: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        likes: [],
+        isAdmin: false,
+        isLoggedIn: false,
+      },
+    });
     set({ token: null });
   },
+  editProfile: async ({
+    firstName,
+    lastName,
+    email,
+    username,
+  }: EditProfileI) => {
+    const body = {
+      firstName,
+      lastName,
+      email,
+    };
+    const metaData = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    };
+
+    const res = await fetch(`${BASE_URL}/users/${username}`, metaData);
+    const data = await res.json();
+    set({ user: { ...data, isLoggedIn: true } });
+  },
+  likeJob: () => {},
 }));

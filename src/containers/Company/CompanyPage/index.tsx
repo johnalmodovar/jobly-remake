@@ -31,12 +31,12 @@ export default function CompanyPage() {
     >
       <div
         className="
-        bg-white
-        min-h-fit
-        min-w-fit
-        card
-        p-10
-        md:m-5
+          bg-white
+          min-h-fit
+          min-w-fit
+          card
+          p-10
+          md:m-5
         "
       >
         {company.logoUrl && (

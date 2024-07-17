@@ -7,14 +7,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useAuthStore } from "../../../states/stores";
+import { useUserStore } from "../../../states/stores";
 
 export default function LoginForm() {
   const [formData, setFormData] = useState({ username: "", password: "" });
   // const [formErrors, setFormErrors] = useState([]);
 
   const navigate = useNavigate();
-  const { login } = useAuthStore();
+  const { login } = useUserStore();
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = evt.target;
@@ -58,9 +58,6 @@ export default function LoginForm() {
         />
       </div>
       <div className="form-control">
-        {/* <label className="label">
-          <span className="label-text">Password</span>
-        </label> */}
         <input
           required
           type="password"

@@ -6,12 +6,12 @@
 
 import { Navigate } from "react-router-dom";
 
-import { useAuthStore } from "../../states/stores";
+import { useUserStore } from "../../states/stores";
 import hero from "../../assets/hero.jpg";
 import LoginForm from "../Form/Login";
 
 export default function Homepage() {
-  const { user } = useAuthStore();
+  const { user } = useUserStore();
 
   return (
     <>
