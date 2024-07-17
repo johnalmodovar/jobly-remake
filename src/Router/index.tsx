@@ -8,10 +8,10 @@ import { Route, Routes } from "react-router-dom";
 
 import Homepage from "../containers/Homepage";
 import { routerData } from "./constants";
-import { useAuthStore } from "../states/stores";
+import { useUserStore } from "../states/stores";
 
 export default function Router() {
-  const { user } = useAuthStore();
+  const { user } = useUserStore();
 
   return (
     <Routes>
