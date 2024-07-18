@@ -82,7 +82,7 @@ export interface CompanyStoreI {
 }
 
 export interface JobStoreI {
-  jobs: Array<JobI> | null;
+  jobs: Array<JobI> | [];
   fetchJobs: () => Promise<void>;
 }
 

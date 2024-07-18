@@ -31,7 +31,7 @@ export const useCompanyStore = create<CompanyStoreI>((set) => ({
 }));
 
 export const useJobStore = create<JobStoreI>((set) => ({
-  jobs: null,
+  jobs: [],
   fetchJobs: async () => {
     const res = await fetch(`${BASE_URL}/jobs`);
     const data = await res.json();
@@ -136,7 +136,7 @@ export const useUserStore = create<UserStoreI>((set, get) => ({
       metaData
     );
     const jobData = await res.json();
-    set({ user: { ...user, likes: [...user.likes, jobData] } });
+    set({ user: { ...user, likes: [...user.likes, jobData.jobId] } });
   },
   unlikeJob: async (jobId, username) => {
     const user = get().user;
@@ -155,7 +155,7 @@ export const useUserStore = create<UserStoreI>((set, get) => ({
     );
     const jobData = await res.json();
     set({
-      user: { ...user, likes: user.likes.filter((id) => id !== jobData) },
+      user: { ...user, likes: user.likes.filter((id) => id !== jobData.jobId) },
     });
   },
 }));
