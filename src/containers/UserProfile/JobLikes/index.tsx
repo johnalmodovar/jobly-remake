@@ -23,11 +23,50 @@ export default function JobLikes() {
   }, [user.likes]);
 
   return (
-    <div>
-      {userJobs.length === 0 && (
-        <p>You haven't liked any jobs yet. Start job hunting!</p>
-      )}
-      <CardList jobs={userJobs} />
+    <div
+      className="
+        py-5
+        flex
+        flex-col
+        items-center
+        justify-center
+      "
+    >
+      <div
+        className="
+          bg-white
+          min-h-fit
+          min-w-fit
+          w-[70vw]
+          card
+          p-10
+          md:m-5
+        "
+      >
+        <h2
+          className="
+            text-black
+            text-center
+            text-2xl
+          "
+        >
+          Jobs You Have Liked:
+        </h2>
+      </div>
+      <div
+        className="
+        gap-8
+          md:grid
+          md:grid-cols-2
+          xl:grid-cols-3
+          xl:gap-10
+        "
+      >
+        {userJobs.length === 0 && (
+          <p>You haven't liked any jobs yet. Start job hunting!</p>
+        )}
+        <CardList jobs={userJobs} />
+      </div>
     </div>
   );
 }
