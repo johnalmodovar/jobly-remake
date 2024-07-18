@@ -12,7 +12,7 @@ import Navbar from "./components/Navbar";
 import { useUserStore } from "./states/stores";
 
 export default function App() {
-  const { user, token, setUser, fetchUser } = useUserStore();
+  const { user, token, fetchUser } = useUserStore();
 
   useEffect(() => {
     if (token) fetchUser();
