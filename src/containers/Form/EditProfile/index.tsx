@@ -6,12 +6,10 @@
  */
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { useUserStore } from "../../../states/stores";
 
 export default function EditProfileForm() {
-  const navigate = useNavigate();
   const { user, editProfile } = useUserStore();
   const { firstName, lastName, email, username } = user;
 
@@ -38,7 +36,6 @@ export default function EditProfileForm() {
     try {
       editProfile(formData);
       setIsSubmitted(true);
-      navigate("/settings");
     } catch (error) {
       console.log("error instance: ", error);
     }
