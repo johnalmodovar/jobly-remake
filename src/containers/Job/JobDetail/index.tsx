@@ -23,7 +23,6 @@ export default function JobDetails({ job }: JobDetailsI) {
   useEffect(() => {
     if (user.likes.includes(job.id)) setIsLiked(true);
   }, [job.id]);
-
   const handleClick = (
     evt: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
