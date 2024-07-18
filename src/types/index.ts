@@ -17,7 +17,7 @@ export interface CompanyI {
 }
 
 export interface JobI {
-  id: number;
+  id: string;
   title: string;
   salary?: string;
   equity?: string;
@@ -31,7 +31,7 @@ export interface UserI {
   lastName: string;
   email: string;
   isAdmin: boolean;
-  likes: Array<JobI>;
+  likes: Array<string>;
   isLoggedIn: boolean;
 }
 
@@ -99,5 +99,6 @@ export interface UserStoreI {
     email,
     username,
   }: EditProfileI) => Promise<void>;
-  likeJob: () => void;
+  likeJob: (jobId: string, username: string) => Promise<void>;
+  unlikeJob: (jobId: string, username: string) => Promise<void>;
 }

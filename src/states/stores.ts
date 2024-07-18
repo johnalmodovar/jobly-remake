@@ -120,5 +120,42 @@ export const useUserStore = create<UserStoreI>((set, get) => ({
     const data = await res.json();
     set({ user: { ...data, isLoggedIn: true } });
   },
-  likeJob: () => {},
+  likeJob: async (jobId, username) => {
+    const user = get().user;
+    const body = {};
+    const metaData = {
+      method: "POST",
+      headers: {
+        "Content-Type": "applications/json",
+      },
+      body: JSON.stringify(body),
+    };
+
+    const res = await fetch(
+      `${BASE_URL}/users/${username}/jobs/${jobId}`,
+      metaData
+    );
+    const jobData = await res.json();
+    set({ user: { ...user, likes: [...user.likes, jobData] } });
+  },
+  unlikeJob: async (jobId, username) => {
+    const user = get().user;
+    const body = {};
+    const metaData = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "applications/json",
+      },
+      body: JSON.stringify(body),
+    };
+
+    const res = await fetch(
+      `${BASE_URL}/users/${username}/jobs/${jobId}`,
+      metaData
+    );
+    const jobData = await res.json();
+    set({
+      user: { ...user, likes: user.likes.filter((id) => id !== jobData) },
+    });
+  },
 }));
