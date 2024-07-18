@@ -6,20 +6,36 @@
  * Props:
  * - job: { id, title, salary, equity, companyHandle, companyName }
  *
- * TODO:
- * - add button to show interest in a job.
+ * States:
+ * - isLiked: boolean to keep track if a job has been liked or not.
  */
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { JobDetailsI } from "../../../types";
-import { useUserStore, useJobStore } from "../../../states/stores";
+import { useUserStore } from "../../../states/stores";
 
 export default function JobDetails({ job }: JobDetailsI) {
-  const { user } = useUserStore();
+  const { user, likeJob, unlikeJob } = useUserStore();
+
   const [isLiked, setIsLiked] = useState(false);
 
-  const handleClick = () => {
+  useEffect(() => {
+    if (user.likes.includes(job.id)) setIsLiked(true);
+  }, [job.id]);
+
+  const handleClick = (
+    evt: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    evt.preventDefault();
+    const jobId = evt.currentTarget.value;
+
+    if (isLiked) {
+      unlikeJob(jobId, user.username);
+    } else {
+      likeJob(jobId, user.username);
+    }
+
     setIsLiked(!isLiked);
   };
 
