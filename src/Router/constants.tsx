@@ -4,6 +4,7 @@ import CompanyList from "../containers/Company/CompanyList";
 import CompanyPage from "../containers/Company/CompanyPage";
 import JobList from "../containers/Job/JobList";
 import SettingsPage from "../containers/UserProfile/SettingsPage";
+import JobLikes from "../containers/UserProfile/JobLikes";
 
 export const routerData: RouterI[] = [
   {
@@ -25,5 +26,10 @@ export const routerData: RouterI[] = [
     path: "/settings",
     title: "settings",
     element: <SettingsPage />,
+  },
+  {
+    path: "/likes",
+    title: "likes",
+    element: <JobLikes />,
   },
 ];
