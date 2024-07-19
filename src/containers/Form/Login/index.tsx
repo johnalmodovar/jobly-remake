@@ -38,7 +38,7 @@ export default function LoginForm() {
   };
 
   return (
-    <form className="card-body" onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div className="form-control">
         {/* <label className="label">
           <span className="label-text">Username</span>
@@ -70,7 +70,7 @@ export default function LoginForm() {
             input-bordered
           "
         />
-        <label className="label">
+        {/* <label className="label">
           <a
             className="
               label-text-alt
@@ -81,7 +81,7 @@ export default function LoginForm() {
           >
             Forgot password?
           </a>
-        </label>
+        </label> */}
       </div>
       <div className="form-control mt-6">
         <button className="btn btn-primary">Login</button>
