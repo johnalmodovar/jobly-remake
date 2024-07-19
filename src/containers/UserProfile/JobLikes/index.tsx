@@ -53,6 +53,11 @@ export default function JobLikes() {
           Jobs You Have Liked:
         </h2>
       </div>
+      {userJobs.length === 0 && (
+        <p className="text-center">
+          You haven't liked any jobs yet. Start job hunting!
+        </p>
+      )}
       <div
         className="
         gap-8
@@ -62,9 +67,6 @@ export default function JobLikes() {
           xl:gap-10
         "
       >
-        {userJobs.length === 0 && (
-          <p>You haven't liked any jobs yet. Start job hunting!</p>
-        )}
         <CardList jobs={userJobs} />
       </div>
     </div>
