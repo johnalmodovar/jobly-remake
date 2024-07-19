@@ -4,7 +4,7 @@
  * Landing page for application.
  */
 
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 import { useUserStore } from "../../states/stores";
 import hero from "../../assets/hero.jpg";
@@ -48,7 +48,7 @@ export default function Homepage() {
                   text-white
                 "
               >
-                Jobly
+                Welcome to Jobly!
               </h1>
               <p
                 className="
@@ -57,12 +57,13 @@ export default function Homepage() {
                   text-white
                 "
               >
-                Find the perfect job that suits your skills!
+                Find the perfect job that suits your skills.
               </p>
             </div>
             <div
               className="
                 card
+                flex
                 bg-base-100
                 w-full
                 max-w-sm
@@ -70,7 +71,37 @@ export default function Homepage() {
                 shadow-2xl
               "
             >
-              <LoginForm />
+              <div className="card-body">
+                <LoginForm />
+                <div
+                  className="
+                    flex
+                    justify-center
+                    items-center
+                    my-4
+                  "
+                >
+                  <div className="w-60 h-px bg-gray-200 border-1 dark:bg-gray-700" />
+                </div>
+                <div
+                  className="
+                    flex
+                    justify-center
+                    items-center
+                  "
+                >
+                  <Link
+                    className="
+                      btn
+                      btn-primary
+                      w-[320px]
+                    "
+                    to="/register"
+                  >
+                    Create Account
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
