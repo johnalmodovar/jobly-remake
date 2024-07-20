@@ -9,6 +9,7 @@ import {
   UserStoreI,
   TokenI,
   UserLoginI,
+  UserRegisterI,
   EditProfileI,
 } from "../types";
 
@@ -80,6 +81,32 @@ export const useUserStore = create<UserStoreI>((set, get) => ({
     };
 
     const res = await fetch(`${BASE_URL}/auth/login`, metaData);
+    const data = await res.json();
+    set({ token: data.token });
+  },
+  register: async ({
+    email,
+    username,
+    password,
+    firstName,
+    lastName,
+  }: UserRegisterI) => {
+    const body = {
+      email,
+      username,
+      password,
+      firstName,
+      lastName,
+    };
+    const metaData = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    };
+
+    const res = await fetch(`${BASE_URL}/auth/register`, metaData);
     const data = await res.json();
     set({ token: data.token });
   },

@@ -45,6 +45,14 @@ export interface UserLoginI {
   password: string;
 }
 
+export interface UserRegisterI {
+  email: string;
+  username: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+}
+
 export interface EditProfileI {
   firstName: string;
   lastName: string;
@@ -92,6 +100,13 @@ export interface UserStoreI {
   setUser: (userData: UserI) => void;
   fetchUser: () => Promise<void>;
   login: ({ username, password }: UserLoginI) => Promise<void>;
+  register: ({
+    email,
+    username,
+    password,
+    firstName,
+    lastName,
+  }: UserRegisterI) => Promise<void>;
   logout: () => void;
   editProfile: ({
     firstName,
