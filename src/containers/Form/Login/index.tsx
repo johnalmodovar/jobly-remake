@@ -1,4 +1,4 @@
-/** Login Form.
+/** LoginForm.
  *
  * @description
  * Form to log in users.
@@ -53,7 +53,7 @@ export default function LoginForm() {
           className="
             input
             input-bordered
-            mb-3
+            mb-5
           "
         />
       </div>
