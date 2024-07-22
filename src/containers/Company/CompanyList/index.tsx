@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import Card from "../../../components/Company/Card";
+import Navbar from "../../../components/Navbar";
 import { useCompanyStore } from "../../../states/stores";
 
 export default function CompanyList() {
@@ -20,24 +21,31 @@ export default function CompanyList() {
     fetchCompanies();
   }, []);
 
+  const filter = (searchData: string) => {
+    fetchCompanies(searchData);
+  };
+
   //TODO: create better loading screen.
   if (!companies) return <h1>Loading...</h1>;
 
   return (
-    <div
-      className="
-        flex
-        flex-col
-        items-center
-        py-5
-      "
-    >
-      {companies.length === 0 && <p>Sorry, no results were found!</p>}
-      {companies.map((c) => (
-        <Link to={`${c.handle}`} key={c.handle}>
-          <Card key={c.handle} company={c} />
-        </Link>
-      ))}
-    </div>
+    <>
+      <Navbar filter={filter} />
+      <div
+        className="
+          flex
+          flex-col
+          items-center
+          py-5
+        "
+      >
+        {companies.length === 0 && <p>Sorry, no results were found!</p>}
+        {companies.map((c) => (
+          <Link to={`${c.handle}`} key={c.handle}>
+            <Card key={c.handle} company={c} />
+          </Link>
+        ))}
+      </div>
+    </>
   );
 }

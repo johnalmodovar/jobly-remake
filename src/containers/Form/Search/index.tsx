@@ -6,7 +6,9 @@
 
 import { useState } from "react";
 
-export default function SearchForm() {
+import { NavbarI } from "../../../types";
+
+export default function SearchForm({ filter }: NavbarI) {
   const [formData, setFormData] = useState("");
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,7 +17,7 @@ export default function SearchForm() {
 
   const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    setFormData("");
+    if (filter) filter(formData);
   };
 
   return (

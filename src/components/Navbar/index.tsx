@@ -19,8 +19,9 @@ import { v4 as uuidv4 } from "uuid";
 import SearchForm from "../../containers/Form/Search";
 import { links, dropdownLinks } from "./constants";
 import { useUserStore } from "../../states/stores";
+import { NavbarI } from "../../types";
 
-export default function Navbar() {
+export default function Navbar({ filter }: NavbarI) {
   const { logout } = useUserStore();
   const drawerRef = useRef<HTMLInputElement>(null);
 
@@ -47,7 +48,7 @@ export default function Navbar() {
         <p className="text-xl pl-2">Jobly</p>
       </div>
       <div className="navbar-center">
-        <SearchForm />
+        {filter && <SearchForm filter={filter} />}
       </div>
       <div className="navbar-end">
         <ul

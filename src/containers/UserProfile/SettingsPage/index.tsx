@@ -5,41 +5,45 @@
  * - Edit Profile: users can edit (first name, last name, email)
  */
 
+import Navbar from "../../../components/Navbar";
 import EditProfileForm from "../../Form/EditProfile";
 
 export default function SettingsPage() {
   return (
-    <div
-      className="
-        p-10
-        flex
-        justify-center
-      "
-    >
+    <>
+      <Navbar />
       <div
         className="
-          bg-white
-          min-h-fit
-          min-w-fit
-          card
           p-10
-          md:m-5
-          md:w-[60vw]
+          flex
+          justify-center
         "
       >
-        <h2
+        <div
           className="
-            text-black
-            text-center
-            text-bold
-            text-3xl
+            bg-white
+            min-h-fit
+            min-w-fit
+            card
+            p-10
+            md:m-5
+            md:w-[60vw]
           "
         >
-          Edit Profile Information:
-        </h2>
+          <h2
+            className="
+              text-black
+              text-center
+              text-bold
+              text-3xl
+            "
+          >
+            Edit Profile Information:
+          </h2>
 
-        <EditProfileForm />
+          <EditProfileForm />
+        </div>
       </div>
-    </div>
+    </>
   );
 }

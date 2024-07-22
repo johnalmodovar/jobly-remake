@@ -31,8 +31,11 @@ export const useCompanyStore = create<CompanyStoreI>((set) => ({
     const data = await res.json();
     set({ company: data.company });
   },
-  fetchCompanies: async () => {
-    const res = await fetch(`${BASE_URL}/companies`);
+  fetchCompanies: async (searchData) => {
+    const params = searchData
+      ? new URLSearchParams({ nameLike: searchData })
+      : "";
+    const res = await fetch(`${BASE_URL}/companies?${params}`);
 
     if (!res.ok) {
       console.error("API Error:", res.statusText, res.status);
@@ -47,8 +50,9 @@ export const useCompanyStore = create<CompanyStoreI>((set) => ({
 
 export const useJobStore = create<JobStoreI>((set) => ({
   jobs: [],
-  fetchJobs: async () => {
-    const res = await fetch(`${BASE_URL}/jobs`);
+  fetchJobs: async (searchData) => {
+    const params = searchData ? new URLSearchParams({ title: searchData }) : "";
+    const res = await fetch(`${BASE_URL}/jobs?${params}`);
 
     if (!res.ok) {
       console.error("API Error:", res.statusText, res.status);

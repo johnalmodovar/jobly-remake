@@ -85,18 +85,22 @@ export interface AlertI {
   message: string;
 }
 
+export interface NavbarI {
+  filter?: (searchData: string) => void;
+}
+
 /** Store types/interfaces. */
 
 export interface CompanyStoreI {
   company: CompanyI | null;
   companies: Array<CompanyI> | [];
   fetchCompany: (handle: string | undefined) => Promise<void>;
-  fetchCompanies: () => Promise<void>;
+  fetchCompanies: (searchData?: string) => Promise<void>;
 }
 
 export interface JobStoreI {
   jobs: Array<JobI> | [];
-  fetchJobs: () => Promise<void>;
+  fetchJobs: (searchData?: string) => Promise<void>;
 }
 
 export interface UserStoreI {
