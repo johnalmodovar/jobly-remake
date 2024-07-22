@@ -1,4 +1,4 @@
-/** Global state management. */
+/** Global state management and API calls. */
 
 import { create } from "zustand";
 import { jwtDecode } from "jwt-decode";
@@ -21,11 +21,25 @@ export const useCompanyStore = create<CompanyStoreI>((set) => ({
   companies: [],
   fetchCompany: async (handle) => {
     const res = await fetch(`${BASE_URL}/companies/${handle}`);
+
+    if (!res.ok) {
+      console.error("API Error:", res.statusText, res.status);
+      const { error } = await res.json();
+      throw Array.isArray(error) ? error : [error];
+    }
+
     const data = await res.json();
     set({ company: data.company });
   },
   fetchCompanies: async () => {
     const res = await fetch(`${BASE_URL}/companies`);
+
+    if (!res.ok) {
+      console.error("API Error:", res.statusText, res.status);
+      const { error } = await res.json();
+      throw Array.isArray(error) ? error : [error];
+    }
+
     const data = await res.json();
     set({ companies: data.companies });
   },
@@ -35,6 +49,13 @@ export const useJobStore = create<JobStoreI>((set) => ({
   jobs: [],
   fetchJobs: async () => {
     const res = await fetch(`${BASE_URL}/jobs`);
+
+    if (!res.ok) {
+      console.error("API Error:", res.statusText, res.status);
+      const { error } = await res.json();
+      throw Array.isArray(error) ? error : [error];
+    }
+
     const data = await res.json();
     set({ jobs: data.jobs });
   },
@@ -57,14 +78,16 @@ export const useUserStore = create<UserStoreI>((set, get) => ({
 
     if (token) {
       const { username } = jwtDecode<TokenI>(token);
+      const res = await fetch(`${BASE_URL}/users/${username}`);
 
-      try {
-        const res = await fetch(`${BASE_URL}/users/${username}`);
-        const userData = await res.json();
-        set({ user: { ...userData.user, isLoggedIn: true } });
-      } catch (error) {
-        console.error(error);
+      if (!res.ok) {
+        console.error("API Error:", res.statusText, res.status);
+        const { error } = await res.json();
+        throw Array.isArray(error) ? error : [error];
       }
+
+      const userData = await res.json();
+      set({ user: { ...userData.user, isLoggedIn: true } });
     }
   },
   login: async ({ username, password }: UserLoginI) => {
@@ -81,6 +104,13 @@ export const useUserStore = create<UserStoreI>((set, get) => ({
     };
 
     const res = await fetch(`${BASE_URL}/auth/login`, metaData);
+
+    if (!res.ok) {
+      console.error("API Error:", res.statusText, res.status);
+      const { error } = await res.json();
+      throw Array.isArray(error) ? error : [error];
+    }
+
     const data = await res.json();
     set({ token: data.token });
   },
@@ -107,6 +137,13 @@ export const useUserStore = create<UserStoreI>((set, get) => ({
     };
 
     const res = await fetch(`${BASE_URL}/auth/register`, metaData);
+
+    if (!res.ok) {
+      console.error("API Error:", res.statusText, res.status);
+      const { error } = await res.json();
+      throw Array.isArray(error) ? error : [error];
+    }
+
     const data = await res.json();
     set({ token: data.token });
   },
@@ -144,6 +181,13 @@ export const useUserStore = create<UserStoreI>((set, get) => ({
     };
 
     const res = await fetch(`${BASE_URL}/users/${username}`, metaData);
+
+    if (!res.ok) {
+      console.error("API Error:", res.statusText, res.status);
+      const { error } = await res.json();
+      throw Array.isArray(error) ? error : [error];
+    }
+
     const data = await res.json();
     set({ user: { ...data, isLoggedIn: true } });
   },
@@ -162,6 +206,13 @@ export const useUserStore = create<UserStoreI>((set, get) => ({
       `${BASE_URL}/users/${username}/jobs/${jobId}`,
       metaData
     );
+
+    if (!res.ok) {
+      console.error("API Error:", res.statusText, res.status);
+      const { error } = await res.json();
+      throw Array.isArray(error) ? error : [error];
+    }
+
     const jobData = await res.json();
     set({ user: { ...user, likes: [...user.likes, jobData.jobId] } });
   },
@@ -180,6 +231,13 @@ export const useUserStore = create<UserStoreI>((set, get) => ({
       `${BASE_URL}/users/${username}/jobs/${jobId}`,
       metaData
     );
+
+    if (!res.ok) {
+      console.error("API Error:", res.statusText, res.status);
+      const { error } = await res.json();
+      throw Array.isArray(error) ? error : [error];
+    }
+
     const jobData = await res.json();
     set({
       user: { ...user, likes: user.likes.filter((id) => id !== jobData.jobId) },

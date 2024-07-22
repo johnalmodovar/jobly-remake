@@ -8,6 +8,7 @@
 import { useState } from "react";
 
 import { useUserStore } from "../../../states/stores";
+import Alert from "../../../components/Alert";
 
 export default function EditProfileForm() {
   const { user, editProfile } = useUserStore();
@@ -108,7 +109,7 @@ export default function EditProfileForm() {
           <button className="btn btn-primary">Submit</button>
         </div>
       </form>
-      {isSubmitted && <p>Changes Saved.</p>}
+      {isSubmitted && <Alert isError={false} message={"Changes Saved!"} />}
     </div>
   );
 }
