@@ -11,6 +11,7 @@ import Homepage from "../containers/Homepage";
 import { routerData } from "./constants";
 import { useUserStore } from "../states/stores";
 import Register from "../containers/Register";
+import RouteError from "../components/RouteError";
 
 export default function Router() {
   const { user } = useUserStore();
@@ -18,7 +19,7 @@ export default function Router() {
   return (
     <Routes>
       <Route path="/register" element={<Register />} />
-      <Route path="*" element={<p>Not Found Placeholder.</p>} />
+      <Route path="*" element={<RouteError />} />
       {user.isLoggedIn ? (
         <>
           {routerData.map(({ path, title, element }) => (
