@@ -8,11 +8,10 @@ import { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 
 import Router from "./Router";
-import Navbar from "./components/Navbar";
 import { useUserStore } from "./states/stores";
 
 export default function App() {
-  const { user, token, fetchUser } = useUserStore();
+  const { token, fetchUser } = useUserStore();
 
   useEffect(() => {
     if (token) fetchUser();
@@ -27,7 +26,6 @@ export default function App() {
   return (
     <main className="bg-[#141550] min-h-screen">
       <BrowserRouter>
-        {user.isLoggedIn && <Navbar />}
         <Router />
       </BrowserRouter>
     </main>
