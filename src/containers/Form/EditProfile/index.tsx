@@ -15,6 +15,7 @@ export default function EditProfileForm() {
   const { firstName, lastName, email, username } = user;
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  // const [formErrors, setFormErrors] = useState([]);
   const [formData, setFormData] = useState({
     firstName,
     lastName,
@@ -33,6 +34,7 @@ export default function EditProfileForm() {
 
   const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
+    // setFormErrors([]);
 
     try {
       editProfile(formData);
@@ -51,7 +53,7 @@ export default function EditProfileForm() {
           </label>
           <input
             required
-            type="text"
+            type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
