@@ -5,7 +5,7 @@ import CompanyPage from "../containers/Company/CompanyPage";
 import JobList from "../containers/Job/JobList";
 import SettingsPage from "../containers/UserProfile/SettingsPage";
 import JobLikes from "../containers/UserProfile/JobLikes";
-import Alert from "../components/Alert";
+// import Alert from "../components/Alert";
 
 export const routerData: RouterI[] = [
   {
