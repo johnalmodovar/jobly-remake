@@ -80,6 +80,11 @@ export interface CardListI {
   jobs: Array<JobI>;
 }
 
+export interface AlertI {
+  isError: boolean;
+  message: string;
+}
+
 /** Store types/interfaces. */
 
 export interface CompanyStoreI {
