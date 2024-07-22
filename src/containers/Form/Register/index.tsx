@@ -8,7 +8,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useUserStore } from "../../../states/stores";
-import hero from "../../../assets/hero.jpg";
 
 export default function RegisterForm() {
   const user = {
@@ -19,7 +18,10 @@ export default function RegisterForm() {
     email: "",
   };
   const [formData, setFormData] = useState({ ...user });
+  // const [formErrors, setFormErrors] = useState([]);
+
   const navigate = useNavigate();
+  const { register } = useUserStore();
 
   const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = evt.target;
@@ -30,8 +32,20 @@ export default function RegisterForm() {
     }));
   };
 
+  const handleSubmit = async (evt: React.FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    // setFormErrors([]);
+
+    try {
+      await register(formData);
+      navigate("/companies");
+    } catch (error) {
+      console.log("error instance: ", error);
+    }
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className="form-control">
         <label className="label">Email</label>
         <input
