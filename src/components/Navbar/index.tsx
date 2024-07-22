@@ -14,6 +14,7 @@
 import { useRef } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { AiOutlineMenu } from "react-icons/ai";
+import { v4 as uuidv4 } from "uuid";
 
 import SearchForm from "../../containers/Form/Search";
 import { links, dropdownLinks } from "./constants";
@@ -66,7 +67,7 @@ export default function Navbar() {
                   text-black
                   mr-2
                 "
-                key={`${label}`}
+                key={`${label}-${uuidv4()}`}
                 to={href}
               >
                 {label}
@@ -102,7 +103,7 @@ export default function Navbar() {
                     <Link
                       aria-label={`Go to ${label} page`}
                       className="text-black"
-                      key={`${label}`}
+                      key={`${label}-${uuidv4()}`}
                       to={href}
                     >
                       {label}
@@ -110,7 +111,13 @@ export default function Navbar() {
                   </li>
                 ))}
                 <li>
-                  <Link to="/" onClick={logout}>
+                  <Link
+                    aria-label="Logout of account"
+                    className="text-black"
+                    key={`Logout-${uuidv4()}`}
+                    to="/"
+                    onClick={logout}
+                  >
                     Logout
                   </Link>
                 </li>
@@ -166,7 +173,7 @@ export default function Navbar() {
                   text-black
                   mr-2
                 "
-                  key={`${label}`}
+                  key={`${label}-${uuidv4()}`}
                   to={href}
                   onClick={handleDrawerClick}
                 >
@@ -183,7 +190,7 @@ export default function Navbar() {
                       <Link
                         aria-label={`Go to ${label} page`}
                         className="text-black"
-                        key={`${label}`}
+                        key={`${label}-${uuidv4()}`}
                         to={href}
                         onClick={handleDrawerClick}
                       >
@@ -192,7 +199,13 @@ export default function Navbar() {
                     </li>
                   ))}
                   <li>
-                    <Link to="/" onClick={logout}>
+                    <Link
+                      aria-label="Logout of account"
+                      className="text-black"
+                      key={`Logout-${uuidv4()}`}
+                      to="/"
+                      onClick={logout}
+                    >
                       Logout
                     </Link>
                   </li>

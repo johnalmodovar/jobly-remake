@@ -5,6 +5,7 @@
  */
 
 import { Route, Routes } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 
 import Homepage from "../containers/Homepage";
 import { routerData } from "./constants";
@@ -21,7 +22,11 @@ export default function Router() {
       {user.isLoggedIn ? (
         <>
           {routerData.map(({ path, title, element }) => (
-            <Route key={title} path={`/${path}`} element={element} />
+            <Route
+              key={`${title}-${uuidv4()}`}
+              path={`/${path}`}
+              element={element}
+            />
           ))}
         </>
       ) : (
