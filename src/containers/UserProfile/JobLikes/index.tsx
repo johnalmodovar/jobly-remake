@@ -10,6 +10,7 @@ import { useJobStore, useUserStore } from "../../../states/stores";
 import { JobI } from "../../../types";
 import Navbar from "../../../components/Navbar";
 import CardList from "../../../components/Job/CardList";
+import Alert from "../../../components/Alert";
 
 export default function JobLikes() {
   const { user } = useUserStore();
@@ -63,9 +64,7 @@ export default function JobLikes() {
           </h2>
         </div>
         {userJobs.length === 0 && (
-          <p className="text-center">
-            You haven't liked any jobs yet. Start job hunting!
-          </p>
+          <Alert isError={true} message={"Sorry, no results were found."} />
         )}
         <div
           className="

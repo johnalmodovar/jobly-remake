@@ -11,6 +11,7 @@ import { useEffect } from "react";
 
 import CardList from "../../../components/Job/CardList";
 import Navbar from "../../../components/Navbar";
+import Alert from "../../../components/Alert";
 import { useJobStore } from "../../../states/stores";
 
 export default function JobList() {
@@ -39,6 +40,9 @@ export default function JobList() {
           justify-center
         "
       >
+        {jobs.length === 0 && (
+          <Alert isError={true} message={"Sorry, no results were found."} />
+        )}
         <div
           className="
             gap-8
@@ -48,7 +52,6 @@ export default function JobList() {
             xl:gap-10
           "
         >
-          {jobs.length === 0 && <p>Sorry, no results were found!</p>}
           <CardList jobs={jobs} />
         </div>
       </div>

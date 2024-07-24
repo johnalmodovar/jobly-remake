@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 
 import Card from "../../../components/Company/Card";
 import Navbar from "../../../components/Navbar";
+import Alert from "../../../components/Alert";
 import { useCompanyStore } from "../../../states/stores";
 
 export default function CompanyList() {
@@ -39,7 +40,9 @@ export default function CompanyList() {
           py-5
         "
       >
-        {companies.length === 0 && <p>Sorry, no results were found!</p>}
+        {companies.length === 0 && (
+          <Alert isError={true} message={"Sorry, no results were found."} />
+        )}
         {companies.map((c) => (
           <Link to={`${c.handle}`} key={c.handle}>
             <Card key={c.handle} company={c} />
