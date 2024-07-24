@@ -101,6 +101,27 @@ export default function Homepage() {
                     Create Account
                   </Link>
                 </div>
+                <div
+                  className="
+                    tooltip
+                    tooltip-bottom
+                    flex
+                    justify-center
+                    items-center
+                  "
+                  data-tip="Username: guest | Password: password"
+                >
+                  <p
+                    className="
+                      label-text-alt
+                      link
+                      link-hover
+                      italic
+                    "
+                  >
+                    Don't want to register? Hover me.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
