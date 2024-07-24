@@ -70,6 +70,22 @@ export default function LoginForm() {
             input-bordered
           "
         />
+        {/* <div
+          className="tooltip pt-2 pl-2"
+          data-tip="Username: guest | Password: password"
+        >
+          <p
+            className="
+              label-text-alt
+              link
+              link-hover
+              text-left
+              italic
+            "
+          >
+            Don't want to register? Hover me.
+          </p>
+        </div> */}
         {/* <label className="label">
           <a
             className="
