@@ -14,7 +14,7 @@ import {
 } from "../types";
 
 //TODO: after deploying backend, put URL here.
-const BASE_URL = "http://localhost:3001";
+const BASE_URL = "https://jobly-server.vercel.app/" || "http://localhost:3001";
 
 export const useCompanyStore = create<CompanyStoreI>((set) => ({
   company: null,
